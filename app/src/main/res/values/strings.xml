@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">SpaceChat</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="settings_default_username">Yura Petrov</string>
+    <string name="settings_default_status">Online</string>
+    <string name="settings_text_account">Account</string>
+    <string name="settings_default_number">+380777777777</string>
+    <string name="settings_label_phone_number">Press to change phone number</string>
+    <string name="settings_default_login">yurapetrov</string>
+    <string name="settings_label_login">Users name</string>
+    <string name="settings_default_bio">Summary</string>
+    <string name="settings_label_bio">Write a few lines about your self</string>
+    <string name="settings_menu_change_name">Change name</string>
+    <string name="settings_menu_exit">Log out</string>
 </resources>
