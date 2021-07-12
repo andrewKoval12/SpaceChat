@@ -38,12 +38,12 @@ class AppDrawer (val mainActivity: AppCompatActivity, private val toolbar: Toolb
                     .withSelectable(false)
                     .withIcon(R.drawable.ic_menu_create_groups),
 
-                PrimaryDrawerItem().withIdentifier(103)
+                PrimaryDrawerItem().withIdentifier(101)
                     .withIconTintingEnabled(true)
                     .withName("Contacts")
                     .withSelectable(false)
                     .withIcon(R.drawable.ic_menu_contacts),
-                PrimaryDrawerItem().withIdentifier(106)
+                PrimaryDrawerItem().withIdentifier(102)
                     .withIconTintingEnabled(true)
                     .withName("Settings")
                     .withSelectable(false)
@@ -56,7 +56,7 @@ class AppDrawer (val mainActivity: AppCompatActivity, private val toolbar: Toolb
                     drawerItem: IDrawerItem<*>
                 ): Boolean {
                     when (position) {
-                        7 ->  mainActivity.supportFragmentManager.beginTransaction()
+                        3 ->  mainActivity.supportFragmentManager.beginTransaction()
                             .addToBackStack(null)
                             .replace(R.id.dataContainer,
                                 SettingsFragment()
