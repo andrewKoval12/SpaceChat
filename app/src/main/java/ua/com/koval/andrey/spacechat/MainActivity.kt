@@ -4,8 +4,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.widget.Toolbar
 import ua.com.koval.andrey.spacechat.databinding.ActivityMainBinding
+import ua.com.koval.andrey.spacechat.ui.activity.RegisterActivity
 import ua.com.koval.andrey.spacechat.ui.fragments.ChatsFragment
 import ua.com.koval.andrey.spacechat.ui.objects.AppDrawer
+import ua.com.koval.andrey.spacechat.utilits.replaceActivity
+import ua.com.koval.andrey.spacechat.utilits.replaceFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,13 +29,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initFunc() {
-        setSupportActionBar(mToolbar)
-        mAppDrawer.create()
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.dataContainer,
-                ChatsFragment()
-            ).commit()
-
+        if (false){
+            setSupportActionBar(mToolbar)
+            mAppDrawer.create()
+            replaceFragment(ChatsFragment())
+        } else {
+            replaceActivity(RegisterActivity())
+        }
     }
 
 

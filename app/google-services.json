@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "246728629972",
+    "firebase_url": "https://spacechat-19403-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "spacechat-19403",
+    "storage_bucket": "spacechat-19403.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:246728629972:android:895fe2b8f34e9bee96e541",
+        "android_client_info": {
+          "package_name": "ua.com.koval.andrey.spacechat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "246728629972-np870c1ma23t198foa7onn3o3eoccca4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMR5fGx3FqxB8bL6RQzKoQ9XpAADH--Lo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "246728629972-np870c1ma23t198foa7onn3o3eoccca4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

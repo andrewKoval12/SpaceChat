@@ -25,4 +25,10 @@
     <string name="label_profile">Profile</string>
     <string name="enter_password">Enter Password</string>
     <string name="enter_confirm_password">Enter Confirm Password</string>
+    <string name="cd_register_image">register_image</string>
+    <string name="register_text_enter_code">Enter code</string>
+    <string name="register_text_we_sent">We sent you code. Check your phone. </string>
+    <string name="register_hint_default_code">- - - - - -</string>
+    <string name="register_toast_enter_phone">Enter phone number</string>
+    <string name="register_title_your_phone">Your phone number</string>
 </resources>
