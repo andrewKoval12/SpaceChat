@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.PhoneAuthProvider
 import ua.com.koval.andrey.spacechat.MainActivity
 import ua.com.koval.andrey.spacechat.R
@@ -16,7 +17,7 @@ import ua.com.koval.andrey.spacechat.utilits.replaceActivity
 import ua.com.koval.andrey.spacechat.utilits.showToast
 
 
-class EnterCodeFragment(val phoneNumber: String, val id: String) : Fragment(R.layout.fragment_enter_code) {
+class EnterCodeFragment(private val phoneNumber: String, val id: String) : Fragment(R.layout.fragment_enter_code) {
     private var _binding: FragmentEnterCodeBinding? = null
     private val binding get() = _binding!!
 
@@ -45,6 +46,7 @@ class EnterCodeFragment(val phoneNumber: String, val id: String) : Fragment(R.la
     private fun enterCode() {
         val code = binding.registerInputCode.text.toString()
         val credential = PhoneAuthProvider.getCredential(id, code)
+        AUTH = FirebaseAuth.getInstance()
         AUTH.signInWithCredential(credential).addOnCompleteListener {
             if(it.isSuccessful){
                 showToast("Welcome!")

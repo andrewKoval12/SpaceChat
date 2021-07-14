@@ -15,7 +15,6 @@ import ua.com.koval.andrey.spacechat.MainActivity
 import ua.com.koval.andrey.spacechat.R
 import ua.com.koval.andrey.spacechat.databinding.FragmentEnterPhoneNumberBinding
 import ua.com.koval.andrey.spacechat.ui.activity.RegisterActivity
-import ua.com.koval.andrey.spacechat.utilits.AUTH
 import ua.com.koval.andrey.spacechat.utilits.replaceActivity
 import ua.com.koval.andrey.spacechat.utilits.replaceFragment
 import ua.com.koval.andrey.spacechat.utilits.showToast
@@ -25,7 +24,8 @@ import java.util.concurrent.TimeUnit
 class EnterPhoneNumberFragment : Fragment(R.layout.fragment_enter_phone_number) {
     private var _binding: FragmentEnterPhoneNumberBinding? = null
     private val binding get() = _binding!!
-    private lateinit var mPhoneNumber:String
+    private lateinit var mPhoneNumber: String
+    private lateinit var auth: FirebaseAuth
     private lateinit var callback: PhoneAuthProvider.OnVerificationStateChangedCallbacks
 
     override fun onCreateView(
@@ -39,23 +39,22 @@ class EnterPhoneNumberFragment : Fragment(R.layout.fragment_enter_phone_number) 
 
     override fun onStart() {
         super.onStart()
+        auth = FirebaseAuth.getInstance()
         callback = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
             override fun onVerificationCompleted(credential: PhoneAuthCredential) {
-                AUTH.signInWithCredential(credential).addOnCompleteListener {
-                    if(it.isSuccessful){
+                auth.signInWithCredential(credential).addOnCompleteListener {
+                    if (it.isSuccessful) {
                         showToast("Welcome!")
                         (activity as RegisterActivity).replaceActivity(MainActivity())
-                    }else{
+                    } else {
                         showToast(it.exception?.message.toString())
                     }
                 }
             }
 
             override fun onVerificationFailed(e: FirebaseException) {
-
                 showToast(e.message.toString())
-
             }
 
             override fun onCodeSent(
@@ -69,7 +68,7 @@ class EnterPhoneNumberFragment : Fragment(R.layout.fragment_enter_phone_number) 
     }
 
     private fun sendCode() {
-        if (binding.registerInputPhoneNumber.text.toString().isEmpty()){
+        if (binding.registerInputPhoneNumber.text.toString().isEmpty()) {
             showToast(getString(R.string.register_toast_enter_phone))
         } else {
             authUser()
@@ -77,9 +76,8 @@ class EnterPhoneNumberFragment : Fragment(R.layout.fragment_enter_phone_number) 
     }
 
     private fun authUser() {
-        AUTH = FirebaseAuth.getInstance()
         mPhoneNumber = binding.registerInputPhoneNumber.text.toString().trim()
-        val options = PhoneAuthOptions.newBuilder(AUTH)
+        val options = PhoneAuthOptions.newBuilder(FirebaseAuth.getInstance())
             .setPhoneNumber(mPhoneNumber)
             .setTimeout(60L, TimeUnit.SECONDS)
             .setActivity(activity as RegisterActivity)
