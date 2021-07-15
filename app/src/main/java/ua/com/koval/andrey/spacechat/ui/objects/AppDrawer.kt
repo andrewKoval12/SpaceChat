@@ -3,6 +3,7 @@ package ua.com.koval.andrey.spacechat.ui.objects
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.drawerlayout.widget.DrawerLayout
 import com.mikepenz.materialdrawer.AccountHeader
 import com.mikepenz.materialdrawer.AccountHeaderBuilder
 import com.mikepenz.materialdrawer.Drawer
@@ -13,15 +14,31 @@ import com.mikepenz.materialdrawer.model.ProfileDrawerItem
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem
 import ua.com.koval.andrey.spacechat.R
 import ua.com.koval.andrey.spacechat.ui.fragments.SettingsFragment
+import ua.com.koval.andrey.spacechat.utilits.replaceFragment
 
 class AppDrawer (val mainActivity: AppCompatActivity, private val toolbar: Toolbar){
 
     private lateinit var mDrawer: Drawer
     private lateinit var mHeader: AccountHeader
+    private lateinit var mDrawerLayout: DrawerLayout
 
     fun create(){
         createHeader()
         createDrawer()
+        mDrawerLayout = mDrawer.drawerLayout
+    }
+
+    fun disableDriver(){
+        mDrawer.actionBarDrawerToggle?.isDrawerIndicatorEnabled = false
+        mainActivity.supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+    }
+
+    fun enableDriver(){
+
+        mainActivity.supportActionBar?.setDisplayHomeAsUpEnabled(false)
+        mDrawer.actionBarDrawerToggle?.isDrawerIndicatorEnabled = true
+        mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_OPEN)
     }
 
     private fun createDrawer() {
@@ -37,18 +54,47 @@ class AppDrawer (val mainActivity: AppCompatActivity, private val toolbar: Toolb
                     .withName("Create group")
                     .withSelectable(false)
                     .withIcon(R.drawable.ic_menu_create_groups),
-
                 PrimaryDrawerItem().withIdentifier(101)
+                    .withIconTintingEnabled(true)
+                    .withName("Create secret chat")
+                    .withSelectable(false)
+                    .withIcon(R.drawable.ic_menu_secret_chat),
+                PrimaryDrawerItem().withIdentifier(102)
+                    .withIconTintingEnabled(true)
+                    .withName("Create new channel")
+                    .withSelectable(false)
+                    .withIcon(R.drawable.ic_menu_create_channel),
+                PrimaryDrawerItem().withIdentifier(103)
                     .withIconTintingEnabled(true)
                     .withName("Contacts")
                     .withSelectable(false)
                     .withIcon(R.drawable.ic_menu_contacts),
-                PrimaryDrawerItem().withIdentifier(102)
+                PrimaryDrawerItem().withIdentifier(104)
+                    .withIconTintingEnabled(true)
+                    .withName("Calls")
+                    .withSelectable(false)
+                    .withIcon(R.drawable.ic_menu_phone),
+                PrimaryDrawerItem().withIdentifier(105)
+                    .withIconTintingEnabled(true)
+                    .withName("Favorites")
+                    .withSelectable(false)
+                    .withIcon(R.drawable.ic_menu_favorites),
+                PrimaryDrawerItem().withIdentifier(106)
                     .withIconTintingEnabled(true)
                     .withName("Settings")
                     .withSelectable(false)
                     .withIcon(R.drawable.ic_menu_settings),
-                DividerDrawerItem()
+                DividerDrawerItem(),
+                PrimaryDrawerItem().withIdentifier(108)
+                    .withIconTintingEnabled(true)
+                    .withName("Invite friends")
+                    .withSelectable(false)
+                    .withIcon(R.drawable.ic_menu_invate),
+                PrimaryDrawerItem().withIdentifier(109)
+                    .withIconTintingEnabled(true)
+                    .withName("About a telegram")
+                    .withSelectable(false)
+                    .withIcon(R.drawable.ic_menu_help)
             ).withOnDrawerItemClickListener(object : Drawer.OnDrawerItemClickListener {
                 override fun onItemClick(
                     view: View?,
@@ -56,11 +102,7 @@ class AppDrawer (val mainActivity: AppCompatActivity, private val toolbar: Toolb
                     drawerItem: IDrawerItem<*>
                 ): Boolean {
                     when (position) {
-                        3 ->  mainActivity.supportFragmentManager.beginTransaction()
-                            .addToBackStack(null)
-                            .replace(R.id.dataContainer,
-                                SettingsFragment()
-                            ).commit()
+                        7 ->  mainActivity.replaceFragment(SettingsFragment())
                     }
                     return false
                 }
@@ -73,8 +115,8 @@ class AppDrawer (val mainActivity: AppCompatActivity, private val toolbar: Toolb
             .withActivity(mainActivity)
             .withHeaderBackground(R.drawable.header)
             .addProfiles(
-                ProfileDrawerItem().withName("Yura Petrov")
-                    .withEmail("+7911111111")
+                ProfileDrawerItem().withName("User Name")
+                    .withEmail("+380938888888")
             ).build()
     }
 }

@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar
 import ua.com.koval.andrey.spacechat.R
 import ua.com.koval.andrey.spacechat.databinding.ActivityRegisterBinding
 import ua.com.koval.andrey.spacechat.ui.fragments.EnterPhoneNumberFragment
+import ua.com.koval.andrey.spacechat.utilits.initFirebase
 import ua.com.koval.andrey.spacechat.utilits.replaceFragment
 
 
@@ -18,6 +19,7 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         mBinding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
+        initFirebase()
 
     }
 

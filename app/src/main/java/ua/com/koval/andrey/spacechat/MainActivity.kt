@@ -1,21 +1,21 @@
 package ua.com.koval.andrey.spacechat
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import com.google.firebase.auth.FirebaseAuth
 import ua.com.koval.andrey.spacechat.databinding.ActivityMainBinding
 import ua.com.koval.andrey.spacechat.ui.activity.RegisterActivity
 import ua.com.koval.andrey.spacechat.ui.fragments.ChatsFragment
 import ua.com.koval.andrey.spacechat.ui.objects.AppDrawer
 import ua.com.koval.andrey.spacechat.utilits.AUTH
+import ua.com.koval.andrey.spacechat.utilits.initFirebase
 import ua.com.koval.andrey.spacechat.utilits.replaceActivity
 import ua.com.koval.andrey.spacechat.utilits.replaceFragment
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var mBinding: ActivityMainBinding
-    private lateinit var mAppDrawer: AppDrawer
+    lateinit var mAppDrawer: AppDrawer
     private lateinit var mToolbar: Toolbar
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,6 +44,6 @@ class MainActivity : AppCompatActivity() {
     private fun initFields() {
         mToolbar = mBinding.mainToolbar
         mAppDrawer = AppDrawer(this,mToolbar)
-        AUTH = FirebaseAuth.getInstance()
+        initFirebase()
     }
 }

@@ -1,33 +1,42 @@
 {
   "project_info": {
-    "project_number": "994342453652",
-    "project_id": "spacechat-fca6e",
-    "storage_bucket": "spacechat-fca6e.appspot.com"
+    "project_number": "312311305499",
+    "firebase_url": "https://demochat-8c729-default-rtdb.firebaseio.com",
+    "project_id": "demochat-8c729",
+    "storage_bucket": "demochat-8c729.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:994342453652:android:ef5de8e743c1c8d8ae4f81",
+        "mobilesdk_app_id": "1:312311305499:android:bb64fcc1124a737b60efbe",
         "android_client_info": {
           "package_name": "ua.com.koval.andrey.spacechat"
         }
       },
       "oauth_client": [
         {
-          "client_id": "994342453652-s4vsft6vh7c45f5svio720pcc1dkfiqp.apps.googleusercontent.com",
+          "client_id": "312311305499-v2k6gh87f213v69mfhcsvrslv5usqnds.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ua.com.koval.andrey.spacechat",
+            "certificate_hash": "941d7cf7878eb6232e4554a093f296b96d2e4d88"
+          }
+        },
+        {
+          "client_id": "312311305499-36gsibqr6vs0eqqpv6r55ptna3hfumv3.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAPfsu1e07VIi0OOopxst8SsH9FunKQnSs"
+          "current_key": "AIzaSyDIDj0sSZnFF5qdgqX9CPn2V2JtCaYtZAA"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "994342453652-s4vsft6vh7c45f5svio720pcc1dkfiqp.apps.googleusercontent.com",
+              "client_id": "312311305499-36gsibqr6vs0eqqpv6r55ptna3hfumv3.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
