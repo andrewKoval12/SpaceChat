@@ -32,8 +32,6 @@ fun AppCompatActivity.replaceFragment(fragment: Fragment, addStack:Boolean = tru
 
 }
 
-
-
 fun Fragment.replaceFragment(fragment: Fragment){
     this.fragmentManager?.beginTransaction()
         ?.addToBackStack(null)
