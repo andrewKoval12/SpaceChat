@@ -1,16 +1,16 @@
 package ua.com.koval.andrey.spacechat.ui.fragments
 
 
+import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.google.firebase.FirebaseException
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.PhoneAuthCredential
-import com.google.firebase.auth.PhoneAuthOptions
-import com.google.firebase.auth.PhoneAuthProvider
+import com.google.firebase.FirebaseTooManyRequestsException
+import com.google.firebase.auth.*
 import ua.com.koval.andrey.spacechat.MainActivity
 import ua.com.koval.andrey.spacechat.R
 import ua.com.koval.andrey.spacechat.databinding.FragmentEnterPhoneNumberBinding
@@ -54,7 +54,16 @@ class EnterPhoneNumberFragment : Fragment(R.layout.fragment_enter_phone_number) 
             }
 
             override fun onVerificationFailed(e: FirebaseException) {
-                showToast(e.message.toString())
+                Log.w(TAG, "onVerificationFailed", e)
+
+                if (e is FirebaseAuthInvalidCredentialsException) {
+                    // Invalid request
+                    showToast(e.message.toString())
+                } else if (e is FirebaseTooManyRequestsException) {
+                    showToast(e.message.toString())
+                }
+
+
             }
 
             override fun onCodeSent(
@@ -84,10 +93,5 @@ class EnterPhoneNumberFragment : Fragment(R.layout.fragment_enter_phone_number) 
             .setCallbacks(callback)
             .build()
         PhoneAuthProvider.verifyPhoneNumber(options)
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }

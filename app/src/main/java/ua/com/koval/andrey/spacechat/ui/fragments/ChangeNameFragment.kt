@@ -57,8 +57,4 @@ class ChangeNameFragment : Fragment(R.layout.fragment_change_name) {
         }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
 }

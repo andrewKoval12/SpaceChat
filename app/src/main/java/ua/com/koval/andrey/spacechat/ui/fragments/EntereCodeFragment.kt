@@ -62,9 +62,4 @@ class EnterCodeFragment(private val phoneNumber: String, val id: String) :
             } else showToast(task.exception?.message.toString())
         }
     }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
 }
