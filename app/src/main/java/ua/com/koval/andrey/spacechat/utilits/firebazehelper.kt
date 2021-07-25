@@ -10,11 +10,13 @@ lateinit var REF_DB_ROOT:DatabaseReference
 lateinit var USER:Users
 lateinit var UID:String
 
+const val NODE_USERNAMES = "usernames"
 const val NODE_USERS = "users"
 const val CHILD_ID = "id"
 const val CHILD_PHONE = "phone"
 const val CHILD_USERNAME = "username"
 const val CHILD_FULLNAME = "fullname"
+const val CHILD_BIO = "bio"
 
 
 fun initFirebase(){

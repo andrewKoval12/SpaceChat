@@ -9,7 +9,7 @@ import ua.com.koval.andrey.spacechat.databinding.FragmentChangeNameBinding
 import ua.com.koval.andrey.spacechat.utilits.*
 
 
-class ChangeNameFragment : Fragment(R.layout.fragment_change_name) {
+class ChangeNameFragment : BaseChangeFragment(R.layout.fragment_change_name) {
 
     private var _binding: FragmentChangeNameBinding? = null
     private val binding get() = _binding!!
@@ -25,21 +25,19 @@ class ChangeNameFragment : Fragment(R.layout.fragment_change_name) {
 
     override fun onResume() {
         super.onResume()
-        setHasOptionsMenu(true)
+        initFullName()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        (activity as MainActivity).menuInflater.inflate(R.menu.settings_menu_confirm, menu)
+    private fun initFullName() {
+        val fullnameList = USER.fullname.split(" ")
+        if (fullnameList.size > 1){
+            binding.settingsInputName.setText(fullnameList[0])
+            binding.settingsInputSurname.setText(fullnameList[1])
+        }else binding.settingsInputName.setText(fullnameList[0])
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.settings_confirm_change -> changeName()
-        }
-        return true
-    }
 
-    private fun changeName() {
+    override fun change() {
         val name = binding.settingsInputName.text.toString().trim()
         val surname = binding.settingsInputSurname.text.toString().trim()
         if (name.isEmpty()) {
