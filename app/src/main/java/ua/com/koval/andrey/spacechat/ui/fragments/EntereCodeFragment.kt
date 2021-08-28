@@ -55,7 +55,6 @@ class EnterCodeFragment(private val phoneNumber: String, val id: String) :
                 REF_DB_ROOT.child(NODE_USERS).child(uid).updateChildren(dateMap)
                     .addOnCompleteListener { task2 ->
                         if (task2.isSuccessful) {
-                            showToast("Добро пожаловать")
                             (activity as RegisterActivity).replaceActivity(MainActivity())
                         } else showToast(task2.exception?.message.toString())
                     }

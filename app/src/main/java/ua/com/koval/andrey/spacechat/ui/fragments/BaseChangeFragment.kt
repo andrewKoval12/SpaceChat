@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.drawerlayout.widget.DrawerLayout
 import ua.com.koval.andrey.spacechat.MainActivity
 import ua.com.koval.andrey.spacechat.R
+import ua.com.koval.andrey.spacechat.utilits.APP_ACTIVITY
 
 
 open class BaseChangeFragment(layout: Int) : Fragment(layout) {
@@ -18,6 +19,7 @@ open class BaseChangeFragment(layout: Int) : Fragment(layout) {
 
     override fun onStop() {
         super.onStop()
+        APP_ACTIVITY.hideKeyboard()
 
     }
 

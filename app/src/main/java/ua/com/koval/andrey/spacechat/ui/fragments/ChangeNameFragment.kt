@@ -2,8 +2,6 @@ package ua.com.koval.andrey.spacechat.ui.fragments
 
 import android.os.Bundle
 import android.view.*
-import androidx.fragment.app.Fragment
-import ua.com.koval.andrey.spacechat.MainActivity
 import ua.com.koval.andrey.spacechat.R
 import ua.com.koval.andrey.spacechat.databinding.FragmentChangeNameBinding
 import ua.com.koval.andrey.spacechat.utilits.*
@@ -44,7 +42,7 @@ class ChangeNameFragment : BaseChangeFragment(R.layout.fragment_change_name) {
             showToast(getString(R.string.settings_toast_name_is_empty))
         } else {
             val fullName = "$name $surname"
-            REF_DB_ROOT.child(NODE_USERS).child(UID).child(CHILD_FULLNAME)
+            REF_DB_ROOT.child(NODE_USERS).child(CURRENT_UID).child(CHILD_FULLNAME)
                 .setValue(fullName).addOnCompleteListener {
                     if (it.isSuccessful) {
                         showToast(getString(R.string.toast_data_update))
