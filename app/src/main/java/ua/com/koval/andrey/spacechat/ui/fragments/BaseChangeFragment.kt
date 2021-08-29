@@ -7,6 +7,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import ua.com.koval.andrey.spacechat.MainActivity
 import ua.com.koval.andrey.spacechat.R
 import ua.com.koval.andrey.spacechat.utilits.APP_ACTIVITY
+import ua.com.koval.andrey.spacechat.utilits.hideKeyboard
 
 
 open class BaseChangeFragment(layout: Int) : Fragment(layout) {
@@ -15,12 +16,11 @@ open class BaseChangeFragment(layout: Int) : Fragment(layout) {
         super.onStart()
         setHasOptionsMenu(true)
         (activity as MainActivity).mAppDrawer.disableDrawer()
+        hideKeyboard()
     }
 
     override fun onStop() {
         super.onStop()
-        APP_ACTIVITY.hideKeyboard()
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

@@ -35,11 +35,12 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
             settingsBio.text = USER.bio
             settingsLogin.text = USER.fullname
             settingsPhoneNumber.text = USER.phone
-            settingsStatus.text = USER.status
+            settingsStatus.text = USER.state
             settingsUsername.text = USER.username
             settingsBtnChangeLogin.setOnClickListener { replaceFragment(ChangeUserNameFragment())}
             settingsBtnChangeBio.setOnClickListener { replaceFragment(ChangeBioFragment()) }
             settingsChangePhoto.setOnClickListener { changePhotoUser() }
+            binding.settingsUserPhoto.downloadAndSetImage(USER.photoUrl)
         }
     }
 
@@ -48,7 +49,7 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
             .setAspectRatio(1,1)
             .setRequestedSize(600,600)
             .setCropShape(CropImageView.CropShape.OVAL)
-            .start(APP_ACTIVITY)
+            .start(APP_ACTIVITY, this)
     }
 
 
@@ -67,5 +68,25 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
             }
         }
         return true
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE
+            && resultCode == RESULT_OK && data != null){
+            val uri = CropImage.getActivityResult(data).uri
+            val path = REF_STORAGE_ROOT.child(FOLDER_PROFILE_IMAGE)
+                .child(CURRENT_UID)
+            putImageToStorage(uri, path){
+                getUrlFromStorage(path){
+                    putUrlToDB(it){
+                        binding.settingsUserPhoto.downloadAndSetImage(it)
+                        showToast(getString(R.string.toast_data_update))
+                        USER.photoUrl = it
+                        APP_ACTIVITY.mAppDrawer.upDateHeader()
+                    }
+                }
+            }
+        }
     }
 }
