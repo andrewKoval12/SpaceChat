@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/SpaceChat/app/src/main/res/layout/contact_item.xml" value="0.2421875" />
+        <entry key="..\:/SpaceChat/app/src/main/res/layout/fragment_contact_item.xml" value="0.23641304347826086" />
+        <entry key="..\:/SpaceChat/app/src/main/res/layout/fragment_contacts.xml" value="0.2421875" />
         <entry key="..\:/SpaceChat/app/src/main/res/layout/fragment_settings.xml" value="0.11778115501519756" />
       </map>
     </option>

@@ -1,14 +1,12 @@
 package ua.com.koval.andrey.spacechat
 
-import android.content.Context
-import android.content.Intent
+
+import android.content.pm.PackageManager
 import android.os.Bundle
-import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import com.theartofdev.edmodo.cropper.CropImage
+import androidx.core.content.ContextCompat
 import ua.com.koval.andrey.spacechat.databinding.ActivityMainBinding
-import ua.com.koval.andrey.spacechat.models.users.Users
 import ua.com.koval.andrey.spacechat.ui.activity.RegisterActivity
 import ua.com.koval.andrey.spacechat.ui.fragments.ChatsFragment
 import ua.com.koval.andrey.spacechat.ui.objects.AppDrawer
@@ -18,7 +16,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var mBinding: ActivityMainBinding
     lateinit var mAppDrawer: AppDrawer
-    private lateinit var mToolbar: Toolbar
+    lateinit var mToolbar: Toolbar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,11 +25,11 @@ class MainActivity : AppCompatActivity() {
         APP_ACTIVITY = this
         initFirebase()
         initUser{
+            initContacts()
             initFields()
             initFunc()
         }
     }
-
 
 
     private fun initFunc() {
@@ -47,7 +45,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun initFields() {
         mToolbar = mBinding.mainToolbar
-        mAppDrawer = AppDrawer(this,mToolbar)
+        mAppDrawer = AppDrawer()
     }
 
     override fun onStart() {
@@ -58,5 +56,16 @@ class MainActivity : AppCompatActivity() {
     override fun onStop() {
         super.onStop()
         AppStates.updateState(AppStates.OFFLINE)
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (ContextCompat.checkSelfPermission(APP_ACTIVITY, READ_CONTACTS) == PackageManager.PERMISSION_GRANTED){
+            initContacts()
+        }
     }
 }
