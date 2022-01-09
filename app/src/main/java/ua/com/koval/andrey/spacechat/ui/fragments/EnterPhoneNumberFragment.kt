@@ -73,7 +73,7 @@ class EnterPhoneNumberFragment : Fragment(R.layout.fragment_enter_phone_number) 
                 replaceFragment(EnterCodeFragment(mPhoneNumber, verificationId))
             }
         }
-        binding.registerInputPhoneNumber.setOnClickListener { sendCode() }
+        binding.registerBtnNext.setOnClickListener { sendCode() }
     }
 
     private fun sendCode() {

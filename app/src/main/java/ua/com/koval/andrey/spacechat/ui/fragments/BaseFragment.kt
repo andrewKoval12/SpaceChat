@@ -1,7 +1,6 @@
 package ua.com.koval.andrey.spacechat.ui.fragments
 
 import androidx.fragment.app.Fragment
-import ua.com.koval.andrey.spacechat.MainActivity
 import ua.com.koval.andrey.spacechat.utilits.APP_ACTIVITY
 
 
